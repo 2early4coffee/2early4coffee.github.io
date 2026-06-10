@@ -1,383 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
+<meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <meta name="description" content="Walter R. — Software Engineer, UI/UX Designer, Game Developer. Based in Nairobi, Kenya."/>
 <title>Walter R. — Portfolio</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#f9f7f4;
+  --bg2:#ffffff;
+  --bg3:#f2f0ec;
+  --accent:#2563eb;
+  --accent2:#0ea5e9;
+  --accentlt:#eff6ff;
+  --text:#1a1a1a;
+  --muted:#6b7280;
+  --border:#e5e2db;
+  --fd:'Syne',sans-serif;
+  --fm:'DM Mono',monospace;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--fm);font-size:13px;line-height:1.65;overflow-x:hidden}
 
-  :root {
-    --bg: #0a0a0a;
-    --bg2: #111111;
-    --bg3: #181818;
-    --accent: #e8ff47;
-    --accent2: #7cffd4;
-    --text: #f0ede6;
-    --muted: #888;
-    --border: rgba(255,255,255,0.07);
-    --font-display: 'Syne', sans-serif;
-    --font-mono: 'DM Mono', monospace;
-  }
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:.9rem 2.5rem;background:rgba(249,247,244,0.93);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:var(--fd);font-weight:800;font-size:1rem;letter-spacing:-.02em;color:var(--accent)}
+.nav-links{display:flex;gap:1.8rem;list-style:none}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:11px;letter-spacing:.07em;text-transform:uppercase;transition:color .2s}
+.nav-links a:hover{color:var(--accent)}
+.nav-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+.nav-toggle span{display:block;width:20px;height:1px;background:var(--muted);transition:all .3s}
+.nav-toggle.open span:nth-child(1){transform:rotate(45deg) translate(4px,4px)}
+.nav-toggle.open span:nth-child(2){opacity:0}
+.nav-toggle.open span:nth-child(3){transform:rotate(-45deg) translate(4px,-4px)}
 
-  html { scroll-behavior: smooth; }
+/* LAYOUT */
+section{padding:5rem 2.5rem;max-width:1040px;margin:0 auto}
+.divider{border:none;border-top:1px solid var(--border);margin:0 2.5rem}
 
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: var(--font-mono);
-    font-size: 14px;
-    line-height: 1.7;
-    overflow-x: hidden;
-  }
+/* HERO */
+#hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding-top:6rem;position:relative}
+.hero-eyebrow{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:1.2rem;display:flex;align-items:center;gap:.5rem}
+.hero-eyebrow::before{content:'';display:inline-block;width:20px;height:1px;background:var(--accent)}
+.hero-name{font-family:var(--fd);font-size:clamp(3rem,8vw,6.5rem);font-weight:800;line-height:.95;letter-spacing:-.03em;color:var(--text);white-space:nowrap}
+.hero-name span{color:var(--accent)}
+.hero-bio{margin-top:1.8rem;max-width:480px;color:var(--muted);font-size:13px;line-height:1.8}
+.hero-cta{margin-top:2rem;display:flex;gap:.8rem;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:.4rem;padding:.6rem 1.2rem;font-family:var(--fm);font-size:11px;letter-spacing:.07em;text-transform:uppercase;text-decoration:none;border-radius:4px;transition:all .2s;cursor:pointer;border:none}
+.btn-primary{background:var(--accent);color:#fff;font-weight:500}
+.btn-primary:hover{background:#1d4ed8}
+.btn-ghost{background:transparent;color:var(--muted);border:1px solid var(--border)}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
 
-  /* NAV */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 1.2rem 3rem;
-    background: rgba(10,10,10,0.85);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-  }
-  .nav-logo {
-    font-family: var(--font-display);
-    font-weight: 800;
-    font-size: 1.1rem;
-    letter-spacing: -0.02em;
-    color: var(--accent);
-  }
-  .nav-links { display: flex; gap: 2rem; list-style: none; }
-  .nav-links a {
-    color: var(--muted);
-    text-decoration: none;
-    font-size: 12px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    transition: color 0.2s;
-  }
-  .nav-links a:hover { color: var(--accent); }
+/* SECTION HEADER */
+.section-header{margin-bottom:2rem;display:flex;align-items:baseline;gap:1.2rem}
+.section-num{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:500;white-space:nowrap}
+.section-title{font-family:var(--fd);font-size:clamp(1.6rem,4vw,2.8rem);font-weight:800;letter-spacing:-.03em;line-height:1}
 
-  /* HAMBURGER */
-  .nav-toggle {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    cursor: pointer;
-    background: none;
-    border: none;
-    padding: 4px;
-  }
-  .nav-toggle span {
-    display: block;
-    width: 22px; height: 1px;
-    background: var(--muted);
-    transition: all 0.3s;
-  }
-  .nav-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(4px, 4px); }
-  .nav-toggle.open span:nth-child(2) { opacity: 0; }
-  .nav-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(4px, -4px); }
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
+.about-text p{color:var(--muted);margin-bottom:1rem;font-size:13px}
+.about-text p:last-child{margin-bottom:0}
+.about-highlights{display:flex;flex-direction:column;gap:.7rem}
+.highlight-item{padding:1rem 1.2rem;background:var(--bg2);border:1px solid var(--border);border-left:2px solid var(--accent);border-radius:0 4px 4px 0}
+.highlight-label{font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin-bottom:.2rem}
+.highlight-val{font-size:12px;color:var(--text)}
 
-  /* SECTIONS */
-  section { padding: 7rem 3rem; max-width: 1100px; margin: 0 auto; }
+/* SKILLS */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem}
+.skill-group{padding:1.2rem;background:var(--bg2);border:1px solid var(--border);border-radius:6px;transition:border-color .2s}
+.skill-group:hover{border-color:#93c5fd}
+.skill-group-title{font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:.8rem}
+.skill-tags{display:flex;flex-wrap:wrap;gap:.4rem}
+.skill-tag{padding:.25rem .6rem;background:var(--bg3);border:1px solid var(--border);border-radius:3px;font-size:11px;color:var(--muted)}
 
-  /* HERO */
-  #hero {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding-top: 8rem;
-    position: relative;
-  }
-  .hero-tag {
-    font-size: 11px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 1.5rem;
-    display: flex; align-items: center; gap: 0.6rem;
-  }
-  .hero-tag::before {
-    content: '';
-    display: inline-block;
-    width: 24px; height: 1px;
-    background: var(--accent);
-  }
-  .hero-name {
-    font-family: var(--font-display);
-    font-size: clamp(3.5rem, 9vw, 8rem);
-    font-weight: 800;
-    line-height: 0.95;
-    letter-spacing: -0.03em;
-    color: var(--text);
-  }
-  .hero-name span { color: var(--accent); }
-  .hero-bio {
-    margin-top: 2.5rem;
-    max-width: 520px;
-    color: var(--muted);
-    font-size: 14px;
-    line-height: 1.8;
-  }
-  .hero-cta {
-    margin-top: 2.5rem;
-    display: flex; gap: 1rem; flex-wrap: wrap;
-  }
-  .btn {
-    display: inline-flex; align-items: center; gap: 0.5rem;
-    padding: 0.75rem 1.5rem;
-    font-family: var(--font-mono);
-    font-size: 12px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    text-decoration: none;
-    border-radius: 2px;
-    transition: all 0.2s;
-    cursor: pointer;
-    border: none;
-  }
-  .btn-primary { background: var(--accent); color: #0a0a0a; font-weight: 500; }
-  .btn-primary:hover { background: #fff; }
-  .btn-ghost { background: transparent; color: var(--muted); border: 1px solid var(--border); }
-  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+/* PROJECT */
+.project-card{padding:2rem;background:var(--bg2);border:1px solid var(--border);border-radius:8px;position:relative;overflow:hidden;transition:border-color .3s}
+.project-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2));transform:scaleX(0);transform-origin:left;transition:transform .4s ease}
+.project-card:hover::before{transform:scaleX(1)}
+.project-card:hover{border-color:#93c5fd}
+.project-status{display:inline-flex;align-items:center;gap:.35rem;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#0ea5e9;margin-bottom:1.2rem}
+.project-status::before{content:'';width:5px;height:5px;border-radius:50%;background:#0ea5e9;animation:blink 1.5s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.project-title{font-family:var(--fd);font-size:1.7rem;font-weight:800;letter-spacing:-.03em;margin-bottom:.8rem;color:var(--text)}
+.project-desc{color:var(--muted);max-width:600px;margin-bottom:1.5rem;line-height:1.8;font-size:13px}
+.project-stack{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.5rem}
+.stack-badge{padding:.25rem .7rem;background:var(--accentlt);border:1px solid #bfdbfe;border-radius:3px;font-size:11px;color:var(--accent)}
 
-  .hero-scroll-hint {
-    position: absolute; bottom: 3rem; left: 3rem;
-    font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
-    color: var(--muted);
-    display: flex; align-items: center; gap: 0.8rem;
-    animation: pulse 2s infinite;
-  }
-  .hero-scroll-hint::after {
-    content: '';
-    display: inline-block;
-    width: 1px; height: 40px;
-    background: var(--border);
-    transform-origin: top;
-    animation: drop 2s infinite;
-  }
-  @keyframes pulse { 0%,100%{opacity:0.4} 50%{opacity:1} }
-  @keyframes drop { 0%{height:0} 100%{height:40px} }
+/* GITHUB */
+.github-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:.8rem;margin-bottom:2.5rem}
+.stat-card{padding:1.2rem;background:var(--bg2);border:1px solid var(--border);border-radius:6px;text-align:center}
+.stat-num{font-family:var(--fd);font-size:2rem;font-weight:800;color:var(--accent);line-height:1;display:block;margin-bottom:.3rem}
+.stat-label{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.lang-section{margin-top:2rem}
+.lang-header{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:1.2rem}
+.lang-bar-wrap{margin-bottom:.9rem}
+.lang-bar-meta{display:flex;justify-content:space-between;margin-bottom:.3rem}
+.lang-name{font-size:12px;color:var(--text)}
+.lang-pct{font-size:12px;color:var(--accent);font-family:var(--fm)}
+.lang-track{height:3px;background:var(--bg3);border-radius:2px;overflow:hidden}
+.lang-fill{height:100%;border-radius:2px;background:var(--accent);width:0;transition:width 1s ease}
+.github-loading{color:var(--muted);font-size:12px;padding:1.5rem 0}
+.github-error{color:#dc2626;font-size:12px;padding:1.5rem 0}
 
-  /* SECTION HEADER */
-  .section-header {
-    margin-bottom: 3rem;
-    display: flex; align-items: baseline; gap: 1.5rem;
-  }
-  .section-num {
-    font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
-    color: var(--accent); font-weight: 500;
-  }
-  .section-title {
-    font-family: var(--font-display);
-    font-size: clamp(2rem, 5vw, 3.5rem);
-    font-weight: 800;
-    letter-spacing: -0.03em;
-    line-height: 1;
-  }
-  .divider {
-    border: none;
-    border-top: 1px solid var(--border);
-    margin: 0 3rem;
-  }
+/* CONTACT */
+.contact-row{display:flex;gap:1rem;flex-wrap:wrap;margin-top:2rem}
+.contact-link{display:inline-flex;align-items:center;gap:.5rem;padding:.75rem 1.2rem;background:var(--bg2);border:1px solid var(--border);border-radius:4px;color:var(--muted);text-decoration:none;font-size:11px;letter-spacing:.07em;text-transform:uppercase;transition:all .2s}
+.contact-link svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:1.5;flex-shrink:0}
+.contact-link:hover{border-color:var(--accent);color:var(--accent);background:var(--accentlt)}
 
-  /* ABOUT */
-  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
-  .about-text p { color: var(--muted); margin-bottom: 1.2rem; }
-  .about-text p:last-child { margin-bottom: 0; }
-  .about-highlights { display: flex; flex-direction: column; gap: 1rem; }
-  .highlight-item {
-    padding: 1.2rem 1.5rem;
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-left: 2px solid var(--accent);
-    border-radius: 2px;
-  }
-  .highlight-label { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.3rem; }
-  .highlight-val { font-size: 13px; color: var(--text); }
+/* FOOTER */
+footer{border-top:1px solid var(--border);padding:1.5rem 2.5rem;max-width:1040px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:11px;letter-spacing:.05em}
 
-  /* SKILLS */
-  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
-  .skill-group {
-    padding: 1.5rem;
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: 2px;
-    transition: border-color 0.2s;
-  }
-  .skill-group:hover { border-color: rgba(232,255,71,0.3); }
-  .skill-group-title { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
-  .skill-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-  .skill-tag {
-    padding: 0.3rem 0.7rem;
-    background: var(--bg3);
-    border: 1px solid var(--border);
-    border-radius: 2px;
-    font-size: 11px;
-    color: var(--muted);
-  }
+/* ANIMATIONS */
+.fade-in{opacity:0;transform:translateY(18px);transition:opacity .5s ease,transform .5s ease}
+.fade-in.visible{opacity:1;transform:translateY(0)}
 
-  /* PROJECTS */
-  .project-card {
-    padding: 2.5rem;
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: 2px;
-    position: relative;
-    overflow: hidden;
-    transition: border-color 0.3s;
-  }
-  .project-card::before {
-    content: '';
-    position: absolute; top: 0; left: 0; right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, var(--accent), var(--accent2));
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.4s ease;
-  }
-  .project-card:hover::before { transform: scaleX(1); }
-  .project-card:hover { border-color: rgba(232,255,71,0.2); }
-  .project-status {
-    display: inline-flex; align-items: center; gap: 0.4rem;
-    font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
-    color: var(--accent2); margin-bottom: 1.5rem;
-  }
-  .project-status::before {
-    content: '';
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: var(--accent2);
-    animation: blink 1.5s infinite;
-  }
-  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
-  .project-title {
-    font-family: var(--font-display);
-    font-size: 2rem;
-    font-weight: 800;
-    letter-spacing: -0.03em;
-    margin-bottom: 1rem;
-  }
-  .project-desc { color: var(--muted); max-width: 640px; margin-bottom: 2rem; line-height: 1.8; }
-  .project-stack { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2rem; }
-  .stack-badge {
-    padding: 0.3rem 0.8rem;
-    background: rgba(232,255,71,0.08);
-    border: 1px solid rgba(232,255,71,0.2);
-    border-radius: 2px;
-    font-size: 11px;
-    color: var(--accent);
-  }
-  .project-links { display: flex; gap: 1rem; }
-
-  /* GITHUB STATS */
-  .github-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1rem; margin-bottom: 3rem; }
-  .stat-card {
-    padding: 1.5rem;
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: 2px;
-    text-align: center;
-  }
-  .stat-num {
-    font-family: var(--font-display);
-    font-size: 2.5rem;
-    font-weight: 800;
-    color: var(--accent);
-    line-height: 1;
-    display: block;
-    margin-bottom: 0.4rem;
-  }
-  .stat-label { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
-
-  .lang-section { margin-top: 2.5rem; }
-  .lang-header { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 1.5rem; }
-  .lang-bar-wrap { margin-bottom: 1rem; }
-  .lang-bar-meta { display: flex; justify-content: space-between; margin-bottom: 0.4rem; }
-  .lang-name { font-size: 12px; color: var(--text); }
-  .lang-pct { font-size: 12px; color: var(--accent); font-family: var(--font-mono); }
-  .lang-track {
-    height: 3px;
-    background: var(--bg3);
-    border-radius: 2px;
-    overflow: hidden;
-  }
-  .lang-fill {
-    height: 100%;
-    border-radius: 2px;
-    background: var(--accent);
-    width: 0;
-    transition: width 1s ease;
-  }
-  .github-loading { color: var(--muted); font-size: 13px; padding: 2rem 0; }
-  .github-error { color: #e25; font-size: 13px; padding: 2rem 0; }
-
-  /* CONTACT */
-  .contact-row {
-    display: flex; gap: 1.5rem; flex-wrap: wrap;
-    margin-top: 2.5rem;
-  }
-  .contact-link {
-    display: inline-flex; align-items: center; gap: 0.6rem;
-    padding: 0.9rem 1.5rem;
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: 2px;
-    color: var(--muted);
-    text-decoration: none;
-    font-size: 12px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    transition: all 0.2s;
-  }
-  .contact-link svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 1.5; flex-shrink: 0; }
-  .contact-link:hover { border-color: var(--accent); color: var(--accent); }
-
-  /* FOOTER */
-  footer {
-    border-top: 1px solid var(--border);
-    padding: 2rem 3rem;
-    max-width: 1100px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: var(--muted);
-    font-size: 11px;
-    letter-spacing: 0.06em;
-  }
-
-  /* FADE IN */
-  .fade-in {
-    opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-  }
-  .fade-in.visible { opacity: 1; transform: translateY(0); }
-
-  /* RESPONSIVE */
-  @media (max-width: 768px) {
-    nav { padding: 1rem 1.5rem; }
-    .nav-links {
-      display: none;
-      position: fixed; top: 60px; left: 0; right: 0;
-      background: rgba(10,10,10,0.97);
-      flex-direction: column;
-      padding: 2rem 1.5rem;
-      gap: 1.5rem;
-      border-bottom: 1px solid var(--border);
-    }
-    .nav-links.open { display: flex; }
-    .nav-toggle { display: flex; }
-    section { padding: 5rem 1.5rem; }
-    .about-grid { grid-template-columns: 1fr; gap: 2rem; }
-    .hero-scroll-hint { display: none; }
-    footer { flex-direction: column; gap: 1rem; text-align: center; }
-    .divider { margin: 0 1.5rem; }
-  }
+/* RESPONSIVE */
+@media(max-width:768px){
+  nav{padding:.8rem 1.2rem}
+  .nav-links{display:none;position:fixed;top:52px;left:0;right:0;background:rgba(249,247,244,0.97);flex-direction:column;padding:1.5rem 1.2rem;gap:1.2rem;border-bottom:1px solid var(--border)}
+  .nav-links.open{display:flex}
+  .nav-toggle{display:flex}
+  section{padding:4rem 1.2rem}
+  .about-grid{grid-template-columns:1fr;gap:1.5rem}
+  .hero-name{white-space:normal}
+  footer{flex-direction:column;gap:.8rem;text-align:center}
+  .divider{margin:0 1.2rem}
+}
 </style>
 </head>
 <body>
@@ -398,16 +150,13 @@
 
 <!-- HERO -->
 <section id="hero">
-  <div class="hero-tag">Software Engineer · UI/UX · Game Dev</div>
-  <h1 class="hero-name">Walter<br/><span>R.</span></h1>
-  <p class="hero-bio">
-    Building at the intersection of code and design. Coming from a background in communications and digital marketing, I'm making my way into software engineering — focused on the web, the interface, and eventually, the interaction itself.
-  </p>
+  <div class="hero-eyebrow">Software Engineer · UI/UX · Game Dev</div>
+  <h1 class="hero-name">Walter <span>R.</span></h1>
+  <p class="hero-bio">Building at the intersection of code and design. Coming from communications and digital marketing, I'm making my way into software engineering — focused on the web, the interface, and eventually, the interaction itself.</p>
   <div class="hero-cta">
     <a href="#projects" class="btn btn-primary">View Projects</a>
     <a href="#contact" class="btn btn-ghost">Get in Touch</a>
   </div>
-  <div class="hero-scroll-hint">Scroll</div>
 </section>
 
 <hr class="divider"/>
@@ -422,7 +171,7 @@
     <div class="about-text">
       <p>I'm a Nairobi-based software engineer in the making — transitioning from over six years in communications and digital marketing into a career built on craft, logic, and design thinking.</p>
       <p>My path has given me an unusual perspective: I understand audiences before I write code for them. That shapes how I build — with purpose, clarity, and attention to experience.</p>
-      <p>Right now I'm deep in the MERN and MEAN stacks, Django, and UI/UX through Figma. My long-term aim is Interactions & Design Engineering — the discipline that lives at the edge of software, interface, and human behaviour.</p>
+      <p>Right now I'm deep in the MERN and MEAN stacks, Django, and UI/UX through Figma. Long-term aim: Interactions & Design Engineering — the discipline at the edge of software, interface, and human behaviour.</p>
     </div>
     <div class="about-highlights">
       <div class="highlight-item">
@@ -500,7 +249,7 @@
       </div>
     </div>
     <div class="skill-group">
-      <div class="skill-group-title">Tools & Workflow</div>
+      <div class="skill-group-title">Tools</div>
       <div class="skill-tags">
         <span class="skill-tag">Git / GitHub</span>
         <span class="skill-tag">VS Code</span>
@@ -522,7 +271,7 @@
   <div class="project-card fade-in">
     <div class="project-status">In Progress</div>
     <h3 class="project-title">MediCare</h3>
-    <p class="project-desc">A full-stack healthcare appointment management platform built for the modern clinic. Features a patient-facing booking interface, a React/Preact admin panel for managing doctors and schedules, Stripe-powered payment flows, and Clerk for authentication. Built end-to-end with the MERN stack.</p>
+    <p class="project-desc">A full-stack healthcare appointment management platform. Features a patient-facing booking interface, a React/Preact admin panel for managing doctors and schedules, Stripe-powered payments, and Clerk for authentication. Built end-to-end on the MERN stack.</p>
     <div class="project-stack">
       <span class="stack-badge">React</span>
       <span class="stack-badge">Node.js</span>
@@ -541,7 +290,7 @@
 
 <hr class="divider"/>
 
-<!-- GITHUB STATS -->
+<!-- GITHUB -->
 <section id="github">
   <div class="section-header fade-in">
     <span class="section-num">04 / GitHub</span>
@@ -549,14 +298,14 @@
   </div>
   <div id="gh-stats-container" class="fade-in">
     <div class="github-loading" id="gh-loading">Fetching GitHub stats…</div>
-    <div id="gh-content" style="display:none;">
+    <div id="gh-content" style="display:none">
       <div class="github-grid" id="gh-cards"></div>
       <div class="lang-section">
         <div class="lang-header">Top languages by repository usage</div>
         <div id="gh-langs"></div>
       </div>
     </div>
-    <div class="github-error" id="gh-error" style="display:none;">Could not load GitHub stats right now.</div>
+    <div class="github-error" id="gh-error" style="display:none">Could not load GitHub stats right now.</div>
   </div>
 </section>
 
@@ -568,9 +317,7 @@
     <span class="section-num">05 / Contact</span>
     <h2 class="section-title">Let's Talk</h2>
   </div>
-  <p class="fade-in" style="color:var(--muted); max-width:520px;">
-    Open to collaborations, frontend roles, and conversations about design engineering. Find me across the web or drop a message.
-  </p>
+  <p class="fade-in" style="color:var(--muted);max-width:480px;font-size:13px">Open to collaborations, frontend roles, and conversations about design engineering. Find me across the web.</p>
   <div class="contact-row fade-in">
     <a href="https://github.com/2early4coffee" class="contact-link" target="_blank" rel="noopener noreferrer">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
@@ -597,110 +344,67 @@
 </footer>
 
 <script>
-  const GITHUB_USERNAME = '2early4coffee';
+var GH='2early4coffee';
+var LC={JavaScript:'#2563eb',TypeScript:'#0ea5e9',Python:'#0284c7',HTML:'#dc2626',CSS:'#7c3aed','C#':'#9333ea',Java:'#ea580c',Shell:'#6b7280'};
 
-  const LANG_COLORS = {
-    JavaScript: '#e8ff47',
-    TypeScript: '#7cffd4',
-    Python: '#4fa8e0',
-    HTML: '#e86040',
-    CSS: '#9b6fff',
-    'C#': '#a87cff',
-    Java: '#f97316',
-    Shell: '#888888',
-    Other: '#555555'
-  };
-
-  async function fetchGitHubStats() {
-    try {
-      const [userRes, reposRes] = await Promise.all([
-        fetch('https://api.github.com/users/' + GITHUB_USERNAME),
-        fetch('https://api.github.com/users/' + GITHUB_USERNAME + '/repos?per_page=100&sort=updated')
-      ]);
-      if (!userRes.ok || !reposRes.ok) throw new Error('GitHub API error');
-      const user = await userRes.json();
-      const repos = await reposRes.json();
-
-      document.getElementById('gh-loading').style.display = 'none';
-      document.getElementById('gh-content').style.display = 'block';
-
-      const totalStars = repos.reduce(function(acc, r) { return acc + r.stargazers_count; }, 0);
-      const statsData = [
-        { num: user.public_repos, label: 'Repositories' },
-        { num: user.followers, label: 'Followers' },
-        { num: totalStars, label: 'Total Stars' }
-      ];
-      document.getElementById('gh-cards').innerHTML = statsData.map(function(s) {
-        return '<div class="stat-card"><span class="stat-num">' + s.num + '</span><span class="stat-label">' + s.label + '</span></div>';
-      }).join('');
-
-      var langCounts = {};
-      await Promise.all(
-        repos.slice(0, 30).map(async function(repo) {
-          try {
-            var r = await fetch('https://api.github.com/repos/' + GITHUB_USERNAME + '/' + repo.name + '/languages');
-            if (!r.ok) return;
-            var langs = await r.json();
-            for (var lang in langs) {
-              langCounts[lang] = (langCounts[lang] || 0) + langs[lang];
-            }
-          } catch(e) {}
-        })
-      );
-
-      var total = Object.values(langCounts).reduce(function(a, b) { return a + b; }, 0);
-      var sorted = Object.entries(langCounts)
-        .sort(function(a, b) { return b[1] - a[1]; })
-        .slice(0, 7)
-        .map(function(entry) {
-          return { lang: entry[0], pct: ((entry[1] / total) * 100).toFixed(1) };
-        });
-
-      document.getElementById('gh-langs').innerHTML = sorted.map(function(item) {
-        var color = LANG_COLORS[item.lang] || '#555555';
-        return '<div class="lang-bar-wrap">' +
-          '<div class="lang-bar-meta">' +
-          '<span class="lang-name">' + item.lang + '</span>' +
-          '<span class="lang-pct">' + item.pct + '%</span>' +
-          '</div>' +
-          '<div class="lang-track">' +
-          '<div class="lang-fill" style="background:' + color + '; width:0%" data-pct="' + item.pct + '"></div>' +
-          '</div></div>';
-      }).join('');
-
-      setTimeout(function() {
-        document.querySelectorAll('.lang-fill').forEach(function(el) {
-          el.style.width = el.dataset.pct + '%';
-        });
-      }, 200);
-
-    } catch(err) {
-      document.getElementById('gh-loading').style.display = 'none';
-      document.getElementById('gh-error').style.display = 'block';
-    }
+async function loadGH(){
+  try{
+    var ur=await fetch('https://api.github.com/users/'+GH);
+    var rr=await fetch('https://api.github.com/users/'+GH+'/repos?per_page=100&sort=updated');
+    if(!ur.ok||!rr.ok)throw new Error();
+    var u=await ur.json();
+    var repos=await rr.json();
+    document.getElementById('gh-loading').style.display='none';
+    document.getElementById('gh-content').style.display='block';
+    var stars=repos.reduce(function(a,r){return a+r.stargazers_count;},0);
+    var stats=[{n:u.public_repos,l:'Repositories'},{n:u.followers,l:'Followers'},{n:stars,l:'Total Stars'}];
+    document.getElementById('gh-cards').innerHTML=stats.map(function(s){
+      return '<div class="stat-card"><span class="stat-num">'+s.n+'</span><span class="stat-label">'+s.l+'</span></div>';
+    }).join('');
+    var lc={};
+    await Promise.all(repos.slice(0,30).map(async function(r){
+      try{
+        var res=await fetch('https://api.github.com/repos/'+GH+'/'+r.name+'/languages');
+        if(!res.ok)return;
+        var d=await res.json();
+        for(var l in d)lc[l]=(lc[l]||0)+d[l];
+      }catch(e){}
+    }));
+    var tot=Object.values(lc).reduce(function(a,b){return a+b;},0);
+    var sorted=Object.entries(lc).sort(function(a,b){return b[1]-a[1];}).slice(0,7).map(function(e){return{l:e[0],p:((e[1]/tot)*100).toFixed(1)};});
+    document.getElementById('gh-langs').innerHTML=sorted.map(function(item){
+      var color=LC[item.l]||'#6b7280';
+      return '<div class="lang-bar-wrap">'+
+        '<div class="lang-bar-meta"><span class="lang-name">'+item.l+'</span><span class="lang-pct">'+item.p+'%</span></div>'+
+        '<div class="lang-track"><div class="lang-fill" style="background:'+color+';width:0" data-p="'+item.p+'"></div></div>'+
+        '</div>';
+    }).join('');
+    setTimeout(function(){
+      document.querySelectorAll('.lang-fill').forEach(function(el){el.style.width=el.dataset.p+'%';});
+    },200);
+  }catch(e){
+    document.getElementById('gh-loading').style.display='none';
+    document.getElementById('gh-error').style.display='block';
   }
+}
 
-  var observer = new IntersectionObserver(function(entries) {
-    entries.forEach(function(e) {
-      if (e.isIntersecting) e.target.classList.add('visible');
-    });
-  }, { threshold: 0.1 });
+var obs=new IntersectionObserver(function(entries){
+  entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible');});
+},{threshold:.1});
+document.querySelectorAll('.fade-in').forEach(function(el){obs.observe(el);});
 
-  document.querySelectorAll('.fade-in').forEach(function(el) { observer.observe(el); });
+var toggle=document.getElementById('nav-toggle');
+var navLinks=document.getElementById('nav-links');
+toggle.addEventListener('click',function(){
+  toggle.classList.toggle('open');
+  navLinks.classList.toggle('open');
+});
+function closeNav(){
+  toggle.classList.remove('open');
+  navLinks.classList.remove('open');
+}
 
-  var toggle = document.getElementById('nav-toggle');
-  var navLinks = document.getElementById('nav-links');
-  toggle.addEventListener('click', function() {
-    toggle.classList.toggle('open');
-    navLinks.classList.toggle('open');
-  });
-
-  function closeNav() {
-    toggle.classList.remove('open');
-    navLinks.classList.remove('open');
-  }
-
-  fetchGitHubStats();
+loadGH();
 </script>
 </body>
 </html>
